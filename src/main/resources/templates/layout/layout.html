@@ -25,7 +25,7 @@
                         <a class="nav-link" th:href="@{/listar}">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/form}">Crear Cliente</a>
+                        <a class="nav-link" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/form}">Crear Cliente</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-right">
