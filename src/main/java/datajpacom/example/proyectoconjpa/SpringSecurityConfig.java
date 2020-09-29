@@ -1,34 +1,41 @@
 package datajpacom.example.proyectoconjpa;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import datajpacom.example.proyectoconjpa.auth.handler.LoginSuccessHandler;
+import datajpacom.example.proyectoconjpa.service.JpaUserDetailsService;
 //Se puede usarprePostEnable
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public BCryptPasswordEncoder passwordEnconder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Autowired
+   private BCryptPasswordEncoder passwordEncoder;
+
+   @Autowired
+   private JpaUserDetailsService userDetailsService;
 
     @Autowired
     public void configureglobal(AuthenticationManagerBuilder builder) throws Exception {
-        PasswordEncoder encoder = passwordEnconder();
+       /* PasswordEncoder encoder = this.passwordEncoder;
         UserBuilder users = User.builder().passwordEncoder(password -> encoder.encode(password));
         builder.inMemoryAuthentication().withUser(users.username("admin").password("12345").roles("ADMIN", "USER"))
                 .withUser(users.username("brayan").password("12345").roles("USER"));
+    */
+        builder.userDetailsService(userDetailsService)
+        .passwordEncoder(passwordEncoder);
+        
     }
 
     @Autowired

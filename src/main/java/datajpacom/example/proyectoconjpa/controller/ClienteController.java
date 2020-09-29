@@ -171,6 +171,7 @@ public class ClienteController {
     }
 
     //@Secured("ROLE_USER")
+    //hasAnyRole('rol1', 'rol2')
     @PreAuthorize("hasRole('ROLE_USER')")   
     @RequestMapping(value = "/ver/{id}")
     public String ver(@PathVariable(value = "id") Long id, Map<String, Object> model, RedirectAttributes flash) {
@@ -185,7 +186,8 @@ public class ClienteController {
         return "ver";
     }
 
-    @Secured("ROLE_USER")
+    //varios roles
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/uploads/{filename:.+}")
     public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 
