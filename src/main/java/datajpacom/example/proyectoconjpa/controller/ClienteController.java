@@ -51,7 +51,7 @@ public class ClienteController {
     @Autowired
     private UploadFileServiceImp uploadFileService;
 
-    @RequestMapping(value = "/listar")
+    @RequestMapping(value = {"/listar", "/"})
     public String listar(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
         Pageable pageRequest = PageRequest.of(page, 5);

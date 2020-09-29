@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http//thymeleaf.org">
+<html xmlns:th="http//thymeleaf.org" xmlns:sec="http//thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head">
     <meta charset="UTF-8">
@@ -28,6 +28,20 @@
                         <a class="nav-link" th:href="@{/form}">Crear Cliente</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav navbar-right">
+                    <li sec:authorize="!isAuthenticated()"> <a class="btn btn-outline-primary" th:href="@{/login}">Sign In</a></li>
+                    <li sec:authorize="isAuthenticated()" class="dropdown">
+                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span sec:authentication="name"></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <form id="logoutForm" th:action="@{/logout}" method="post">
+                                <button class="dropdown-item" onclick="document.getElementById('logoutForm').submit();" type="submit"> Sign out</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </nav>
         <div class="alert-success" th:if="${success != null}" th:text="${success}"> </div>
@@ -42,8 +56,8 @@
     </div>
 
     <footer th:fragment="footer" class="container">
+        <p sec:authorize="isAuthenticated()">Usuario: <span sec:authentication="name"></span> | Rol: <span sec:authentication="principal.authorities"></span></p>
         <p>Desarrollador por Brayan Palomino 2020</p>
-
 
         <!-- JS, Popper.js, and jQuery -->
 
