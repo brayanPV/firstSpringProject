@@ -49,7 +49,7 @@ public class UploadFileServiceImp implements IUploadFileService {
 
     @Override
     public boolean delete(String filename) {
-        // TODO Auto-generated method stub
+
         Path rootPath = getPath(filename);
         File archivo = rootPath.toFile();
         if (archivo.exists() && archivo.canRead()) {

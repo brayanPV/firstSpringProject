@@ -10,7 +10,7 @@
         <div class="card card bg-danger text-white">
             <div class="card-header">Error: acceso denegado</div>
             <div class="card-body">
-                <h5 class="card-title">Lo sentimos<span th:text="${#httpServletRequest.remoteUser}"> </span> No tienes permisos para acceder a este recurso</h5>
+                <h5 class="card-title">Lo sentimos <span th:text="${#httpServletRequest.remoteUser}"> </span> No tienes permisos para acceder a este recurso</h5>
                 <a th:href="@{/listar}" class="btn btn-outline-light" role="button">Volver</a>
             </div>
         </div>

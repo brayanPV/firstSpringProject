@@ -64,15 +64,15 @@ public class ClienteController {
             logger.info("Hola usuario ".concat(authentication.getName()));
         }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null){
+        if(auth != null){
             logger.info("Estatica Hola usuario ".concat(auth.getName()));
         }
 
-        if(hasRole("ROLE_ADMIN")){
+       /* if(hasRole("ROLE_ADMIN")){
             logger.info("Hola ".concat(auth.getName()).concat(" tienes acceso"));
         }else{
             logger.info("Hola ".concat(auth.getName()).concat(" no tienes acceso"));
-        }
+        }*/
 
         SecurityContextHolderAwareRequestWrapper securityContext = new SecurityContextHolderAwareRequestWrapper(request, "ROLE_");
         if(securityContext.isUserInRole("ADMIN")){

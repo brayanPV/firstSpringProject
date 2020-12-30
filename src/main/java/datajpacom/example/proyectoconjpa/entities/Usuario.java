@@ -3,7 +3,6 @@ package datajpacom.example.proyectoconjpa.entities;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class Usuario implements Serializable {
 
     /**
