@@ -20,6 +20,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -45,6 +47,7 @@ public class Cliente implements Serializable{
     private static final long serialVersionUID = 1L;
     
     @OneToMany(mappedBy = "cliente",fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JsonIgnore
     private List<Factura> facturas;
 
     private String foto;

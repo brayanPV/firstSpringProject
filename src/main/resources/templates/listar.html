@@ -13,6 +13,7 @@
             <div class="card-body">
                 <h4 class="card-title">
                     <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/form}" class="btn btn-primary btn-xs">Crear Cliente</a>
+                    <a class="btn btn-outline-warning" th:href="@{'/listar' (format=json)}">JSON</a>
                 </h4>
 
                 <table class="table table-bordered">
